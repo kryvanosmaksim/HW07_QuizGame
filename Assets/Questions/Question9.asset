@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d904cbf129d4d433680fee88c90585ad, type: 3}
+  m_Name: Question9
+  m_EditorClassIdentifier: 
+  Answer1: Fuji
+  Answer2: Everest
+  Answer3: Kilimanjaro
+  Answer4: K2
+  CorrectAnswer: 2
+  QuestionImage: {fileID: 21300000, guid: a6f5a52ea4d7a4beabb935c47eab8a4e, type: 3}
