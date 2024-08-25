@@ -20,7 +20,7 @@ public class GameOver : MonoBehaviour
         int correctAnswers = GameData.CorrectAnswers;
         int incorrectAnswers = GameData.IncorrectAnswers;
         _resultsLabel.text = $"Game Over!\nCorrect Answers: {correctAnswers}\nIncorrect Answers: {incorrectAnswers}";
-        
+
         _backToMenuButton.onClick.AddListener(ReturnToMainMenu);
 
         Debug.Log($"Correct Answers: {correctAnswers}, Incorrect Answers: {incorrectAnswers}");

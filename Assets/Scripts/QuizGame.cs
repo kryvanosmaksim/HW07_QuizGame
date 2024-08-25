@@ -12,9 +12,13 @@ public class QuizGame : MonoBehaviour
     [SerializeField] private Image _questionImage;
     [SerializeField] private Button[] _answerButtons;
     [SerializeField] private TextMeshProUGUI[] _answerTexts;
-    [SerializeField] private TextMeshProUGUI _questionNumberText; // Новое поле для отображения номера вопроса
+    [SerializeField] private TextMeshProUGUI _questionNumberText;
+
+    [Header("Heart Settings")]
+    [SerializeField] private GameObject[] _hearts;
 
     private int _currentQuestionIndex;
+    private int _lives;
     private int _score;
 
     #endregion
@@ -23,7 +27,8 @@ public class QuizGame : MonoBehaviour
 
     private void Start()
     {
-        // Перемешивание вопросов перед началом игры
+        _lives = _hearts.Length;
+
         ShuffleQuestions();
 
         for (int i = 0; i < _answerButtons.Length; i++)
@@ -38,17 +43,6 @@ public class QuizGame : MonoBehaviour
     #endregion
 
     #region Private methods
-
-    private void ShuffleQuestions()
-    {
-        for (int i = 0; i < _questions.Length; i++)
-        {
-            QuizQuestion temp = _questions[i];
-            int randomIndex = Random.Range(i, _questions.Length);
-            _questions[i] = _questions[randomIndex];
-            _questions[randomIndex] = temp;
-        }
-    }
 
     private void EndQuiz()
     {
@@ -69,8 +63,16 @@ public class QuizGame : MonoBehaviour
             _answerTexts[2].text = question.Answer3;
             _answerTexts[3].text = question.Answer4;
 
-            // Обновление текста номера вопроса
             _questionNumberText.text = $"Question {_currentQuestionIndex + 1}/{_questions.Length}";
+        }
+    }
+
+    private void LoseLife()
+    {
+        if (_lives > 0)
+        {
+            _lives--;
+            _hearts[_lives].SetActive(false);
         }
     }
 
@@ -80,16 +82,31 @@ public class QuizGame : MonoBehaviour
         {
             _score++;
         }
+        else
+        {
+            LoseLife();
+        }
 
         _currentQuestionIndex++;
 
-        if (_currentQuestionIndex < _questions.Length)
+        if (_lives > 0 && _currentQuestionIndex < _questions.Length)
         {
             LoadQuestion();
         }
         else
         {
             EndQuiz();
+        }
+    }
+
+    private void ShuffleQuestions()
+    {
+        for (int i = 0; i < _questions.Length; i++)
+        {
+            QuizQuestion temp = _questions[i];
+            int randomIndex = Random.Range(i, _questions.Length);
+            _questions[i] = _questions[randomIndex];
+            _questions[randomIndex] = temp;
         }
     }
 
