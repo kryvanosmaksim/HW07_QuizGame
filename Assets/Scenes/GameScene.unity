@@ -269,6 +269,9 @@ MonoBehaviour:
   - {fileID: 884305725}
   - {fileID: 1202815382}
   - {fileID: 955108586}
+  _correctSprite: {fileID: 1526109375, guid: 0505b3a70715449c88f4165df5bfc098, type: 3}
+  _incorrectSprite: {fileID: 689607205, guid: 796a7a8155b1e45b8b7941c78ef55d5f, type: 3}
+  _defaultSprite: {fileID: -1492161885, guid: 5d0f61b3a1dfd48b49d9a8a041f142e2, type: 3}
 --- !u!1 &93903608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1577,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 165677c38c69645ab82dc43554788664, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1605,7 +1608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 0.7845433
+  m_AspectRatio: 0.63603425
 --- !u!1 &1526752815
 GameObject:
   m_ObjectHideFlags: 0

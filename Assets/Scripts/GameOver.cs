@@ -21,7 +21,7 @@ public class GameOver : MonoBehaviour
         int incorrectAnswers = GameData.IncorrectAnswers;
         _resultsLabel.text = $"Game Over!\nCorrect Answers: {correctAnswers}\nIncorrect Answers: {incorrectAnswers}";
 
-        _backToMenuButton.onClick.AddListener(ReturnToMainMenu);
+        _backToMenuButton.onClick.AddListener(ReturnToMenuClickedCallback);
 
         Debug.Log($"Correct Answers: {correctAnswers}, Incorrect Answers: {incorrectAnswers}");
     }
@@ -30,7 +30,7 @@ public class GameOver : MonoBehaviour
 
     #region Private methods
 
-    private void ReturnToMainMenu()
+    private void ReturnToMenuClickedCallback()
     {
         Debug.Log("Return to Main Menu");
         SceneManager.LoadScene("StartScene");

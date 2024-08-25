@@ -16,14 +16,14 @@ public class StartGame : MonoBehaviour
     private void Start()
     {
         Debug.Log("StartGame Start");
-        _startButton.onClick.AddListener(EnterGame);
+        _startButton.onClick.AddListener(EnterGameClickedCallback);
     }
 
     #endregion
 
     #region Private methods
 
-    private void EnterGame()
+    private void EnterGameClickedCallback()
     {
         Debug.Log("Enter Game");
         SceneManager.LoadScene("GameScene");

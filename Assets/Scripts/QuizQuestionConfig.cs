@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewQuestion", menuName = "Quiz/Question")]
-public class QuizQuestion : ScriptableObject
+public class QuizQuestionConfig : ScriptableObject
 {
     #region Variables
 
