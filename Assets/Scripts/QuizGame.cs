@@ -1,12 +1,14 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class QuizGame : MonoBehaviour
 {
     #region Variables
+
+    private const float DelaySeconds = 0.45f;
 
     [Header("Quiz Settings")]
     [SerializeField] private QuizQuestionConfig[] _questions;
@@ -22,11 +24,10 @@ public class QuizGame : MonoBehaviour
     [SerializeField] private Sprite _correctSprite;
     [SerializeField] private Sprite _incorrectSprite;
     [SerializeField] private Sprite _defaultSprite;
-    
+
     private int _currentQuestionIndex;
     private int _lives;
     private int _score;
-    private const float DelaySeconds = 0.45f;
 
     #endregion
 
@@ -41,6 +42,7 @@ public class QuizGame : MonoBehaviour
             int index = i;
             _answerButtons[i].onClick.AddListener(() => SelectAnswerClickedCallback(index));
         }
+
         LoadQuestion();
     }
 
@@ -83,31 +85,6 @@ public class QuizGame : MonoBehaviour
         }
     }
 
-    private void SelectAnswerClickedCallback(int answerIndex)
-    {
-        bool isCorrect = answerIndex + 1 == _questions[_currentQuestionIndex].CorrectAnswer;
-        
-        if (isCorrect)
-        {
-            _score++;
-        }
-        else
-        {
-            LoseLife();
-            ShowCorrectAnswer();
-        }
-
-        _answerButtons[answerIndex].image.sprite = isCorrect ? _correctSprite : _incorrectSprite;
-        
-        StartCoroutine(ProceedToNextQuestionWithDelay());
-    }
-
-    private void ShowCorrectAnswer()
-    {
-        int correctAnswerIndex = _questions[_currentQuestionIndex].CorrectAnswer - 1;
-        _answerButtons[correctAnswerIndex].image.sprite = _correctSprite;
-    }
-
     private IEnumerator ProceedToNextQuestionWithDelay()
     {
         yield return new WaitForSeconds(DelaySeconds);
@@ -120,6 +97,31 @@ public class QuizGame : MonoBehaviour
         {
             EndQuiz();
         }
+    }
+
+    private void SelectAnswerClickedCallback(int answerIndex)
+    {
+        bool isCorrect = answerIndex + 1 == _questions[_currentQuestionIndex].CorrectAnswer;
+
+        if (isCorrect)
+        {
+            _score++;
+        }
+        else
+        {
+            LoseLife();
+            ShowCorrectAnswer();
+        }
+
+        _answerButtons[answerIndex].image.sprite = isCorrect ? _correctSprite : _incorrectSprite;
+
+        StartCoroutine(ProceedToNextQuestionWithDelay());
+    }
+
+    private void ShowCorrectAnswer()
+    {
+        int correctAnswerIndex = _questions[_currentQuestionIndex].CorrectAnswer - 1;
+        _answerButtons[correctAnswerIndex].image.sprite = _correctSprite;
     }
 
     private void ShuffleQuestions()
